@@ -66,11 +66,15 @@ def is_word_guessed(secret_word, letters_guessed):
     for letter in secret_word:
         # check if letter is in letters_guessed
         if letter in letters_guessed:
+            # increase index
             i += 1
+            # remove letter from list
+            letters_guessed.remove(letter)
             # return true if letter is contained and index is equal to length of secret_word
             if i == len(secret_word):
                 return True
         else:
+            # return false if letter is not contained
             return False
                 
 
