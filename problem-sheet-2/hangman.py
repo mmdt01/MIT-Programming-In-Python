@@ -115,7 +115,9 @@ def get_available_letters(letters_guessed):
     # remove letters guessed from all_letters
     for letter in letters_guessed:
         all_letters.remove(letter)
-    return all_letters
+    # convert list of remaining letters to a string
+    available_letters = ''.join(all_letters)
+    return available_letters
 
 
 
