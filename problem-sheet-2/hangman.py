@@ -76,7 +76,7 @@ def is_word_guessed(secret_word, letters_guessed):
         else:
             # return false if letter is not contained
             return False
-                
+
 
 def get_guessed_word(secret_word, letters_guessed):
     '''
@@ -84,9 +84,23 @@ def get_guessed_word(secret_word, letters_guessed):
     letters_guessed: list (of letters), which letters have been guessed so far
     returns: string, comprised of letters, underscores (_), and spaces that represents
       which letters in secret_word have been guessed so far.
+    '_ ' = unknown letters
+
     '''
-    # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    # initialize index of letter in secret_word
+    n = 0 
+    # convert string to a list to enable easy operations on secret_word
+    word = list(secret_word)
+    # loop through letters in secret_word
+    for letter in secret_word:
+        # check if letter is not within in letters_guessed
+        if letter not in letters_guessed:
+            # if true, change that letter to represent an unknown letter
+            word[n] = "_ "
+        n += 1   
+    # convert list back to a sting
+    guessed_word = ''.join(word)
+    return guessed_word
 
 
 
