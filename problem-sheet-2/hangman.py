@@ -49,7 +49,9 @@ def choose_word(wordlist):
 # Load the list of words into the variable wordlist
 # so that it can be accessed from anywhere in the program
 wordlist = load_words()
-
+# DELETE
+# secret_word = choose_word(wordlist)
+# print("secret word =", secret_word)
 
 def is_word_guessed(secret_word, letters_guessed):
     '''
@@ -146,8 +148,26 @@ def hangman(secret_word):
     
     Follows the other limitations detailed in the problem write-up.
     '''
-    # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    # initialise number of guesses
+    g = 6
+    # initialise letters guessed
+    letters_guessed = []
+
+    # starts up game
+    print("Welcome to the game Hangman!")
+    # let the user know how many letters the secret word contains
+    print("I am thinking of a word that is", len(secret_word), "letters long.")
+    # user starts with 6 guesses
+    print("----------------- \nYou have", g, "guesses left.")
+    # display available letters
+    print("Available letters:", get_available_letters(letters_guessed))
+
+
+
+
+# test hangman func
+secret_word = "springboks"
+hangman(secret_word)
 
 
 
@@ -229,13 +249,13 @@ def hangman_with_hints(secret_word):
 
 
 if __name__ == "__main__":
-    # pass
+    pass
 
     # To test part 2, comment out the pass line above and
     # uncomment the following two lines.
     
-    secret_word = choose_word(wordlist)
-    hangman(secret_word)
+    # secret_word = choose_word(wordlist)
+    # hangman(secret_word)
 
 ###############
     
