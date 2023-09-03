@@ -158,7 +158,7 @@ def hangman(secret_word):
     print("I am thinking of a word that is", len(secret_word), "letters long.\n------------------------")
 
     # enter guess loop 
-    while g > 0:
+    while g > 0 and w > 0:
         # display number of guesses left
         print("You have", g, "guesses left.")
         # display number of warnings left
@@ -168,16 +168,23 @@ def hangman(secret_word):
         
         # take a guess
         guess = input("Please guess a letter: ")
-        # add guess to letters_guessed
-        letters_guessed.append(guess)
 
+        # accept capital letters as a valid input
+        guess = guess.lower()
+        
         # check whether guess is valid
-
+        if guess not in list(string.ascii_lowercase):
+            print("Oops! Your entry is not a valid input. \nOnly singular alphabetical letters are accepted, please try again.")
+            w -= 1    # decrement number of warnings
         # user guess is correct
-        if guess in secret_word: # remember to convert secret word to a list
+        elif guess in secret_word: # remember to convert secret word to a list
             print("\nWell done! Your guess is correct!")
+            # add guess to letters_guessed
+            letters_guessed.append(guess)
         else:
             print("\nYour guess is unfortunately wrong. Try again!")
+            # add guess to letters_guessed
+            letters_guessed.append(guess)
 
         # after guess
         print(get_guessed_word(secret_word, letters_guessed))
