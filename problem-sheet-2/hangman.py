@@ -149,7 +149,7 @@ def hangman(secret_word):
     Follows the other limitations detailed in the problem write-up.
     '''
     g = 6   # initialise number of guesses
-    w = 0   # initialise number of warnings
+    w = 3   # initialise number of warnings
     letters_guessed = []    # initialise number of guesses
 
     # starts up game
@@ -159,15 +159,15 @@ def hangman(secret_word):
 
     # enter guess loop 
     while g > 0:
+        # display number of guesses left
+        print("You have", g, "guesses left.")
         # display number of warnings left
         print("You have", w, "warnings left.")
-        # user starts with 6 guesses
-        print("You have", g, "guesses left.")
         # display available letters
         print("Available letters:", get_available_letters(letters_guessed))
         
         # take a guess
-        guess = input(print("Please guess a letter: "))
+        guess = input("Please guess a letter: ")
         print(guess)
 
         # user guess is correct
