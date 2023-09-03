@@ -168,15 +168,21 @@ def hangman(secret_word):
         
         # take a guess
         guess = input("Please guess a letter: ")
-        print(guess)
+        # add guess to letters_guessed
+        letters_guessed.append(guess)
+
+        # check whether guess is valid
 
         # user guess is correct
         if guess in secret_word: # remember to convert secret word to a list
-            print("Well done! Your guess is correct!")
+            print("\nWell done! Your guess is correct!")
+        else:
+            print("\nYour guess is unfortunately wrong. Try again!")
 
         # after guess
-        print(secret_word) # only show letters that have been guessed
-        print("------------------------")
+        print(get_guessed_word(secret_word, letters_guessed))
+        # print(secret_word) # only show letters that have been guessed
+        print("\n------------------------")
 
         g -= 1   # decrement number of guesses
 
