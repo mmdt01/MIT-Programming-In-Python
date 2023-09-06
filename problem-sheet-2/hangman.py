@@ -70,8 +70,6 @@ def is_word_guessed(secret_word, letters_guessed):
         if letter in letters_guessed:
             # increase index
             i += 1
-            # remove letter from list
-            letters_guessed.remove(letter)
             # return true if letter is contained and index is equal to length of secret_word
             if i == len(secret_word):
                 return True
@@ -79,6 +77,9 @@ def is_word_guessed(secret_word, letters_guessed):
             # return false if letter is not contained
             return False
 
+# secret_word = "cat"
+# letters_guessed = ['c','d','a','t']
+# print(is_word_guessed(secret_word, letters_guessed))
 
 def get_guessed_word(secret_word, letters_guessed):
     '''
@@ -150,7 +151,7 @@ def hangman(secret_word):
     '''
     g = 6   # initialise number of guesses
     w = 3   # initialise number of warnings
-    letters_guessed = []    # initialise number of guesses
+    ltrs_guessed = []    # initialise number of guesses
 
     # starts up game
     print("Welcome to the game Hangman!")
@@ -164,13 +165,17 @@ def hangman(secret_word):
         # display number of warnings left
         print("You have", w, "warnings left.")
         # display available letters
-        print("Available letters:", get_available_letters(letters_guessed))
+        print("Available letters:", get_available_letters(ltrs_guessed))
         
         # take a guess
         guess = input("Please guess a letter: ")
 
         # accept capital letters as a valid input
         guess = guess.lower()
+
+        # # terminate game if all letters have been guessed
+        # if is_word_guessed(secret_word, letters_guessed):
+        #     print("Congratulations!!! You have correctly guessed the secret word! :)")
         
         # check whether guess is valid
         if guess not in list(string.ascii_lowercase):
@@ -181,7 +186,7 @@ def hangman(secret_word):
                 g -= 1    # user loses one guess
                 w += 1    # add one warning back
         # check whether guess has already been made
-        elif guess in letters_guessed:
+        elif guess in ltrs_guessed:
             # if user has one or more warnings left, they lose one warning
             if w > 1:
                 w -= 1
@@ -194,10 +199,14 @@ def hangman(secret_word):
         # user guess is correct
         elif guess in secret_word: # remember to convert secret word to a list
             print("\nWell done! Your guess is correct!")
-            letters_guessed.append(guess)   # add guess to letters_guessed
+            ltrs_guessed.append(guess)   # add guess to letters_guessed
+            # terminate game if all letters have been guessed
+            if is_word_guessed(secret_word, ltrs_guessed):
+                print("Congratulations!!! You have correctly guessed the secret word! :)")
+                break
         else:
             print("\nYour guess is unfortunately wrong. Try again!")
-            letters_guessed.append(guess)   # add guess to letters_guessed
+            ltrs_guessed.append(guess)   # add guess to letters_guessed
             # if user guess is incorrent and vowel
             if guess in ['a','e','i','o','u']:
                 print("(2 guesses are lost for an incorrect vowel)")
@@ -206,7 +215,7 @@ def hangman(secret_word):
                 g -= 1   # decrement number of guesses
 
         # display secret word with only guessed letters shown
-        print(get_guessed_word(secret_word, letters_guessed))
+        print(get_guessed_word(secret_word, ltrs_guessed))
         print("\n------------------------")
 
         # g -= 1   # decrement number of guesses
