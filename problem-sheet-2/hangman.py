@@ -158,7 +158,7 @@ def hangman(secret_word):
     print("I am thinking of a word that is", len(secret_word), "letters long.\n------------------------")
 
     # enter guess loop 
-    while g > 0 and w > 0:
+    while g > 0:
         # display number of guesses left
         print("You have", g, "guesses left.")
         # display number of warnings left
@@ -174,32 +174,43 @@ def hangman(secret_word):
         
         # check whether guess is valid
         if guess not in list(string.ascii_lowercase):
-            print("Oops! Your entry is not a valid input. \nOnly singular alphabetical letters are accepted, please try again.")
+            print("\nOops! Your entry is not a valid input. Only singular alphabetical letters are accepted.")
             w -= 1    # decrement number of warnings
+            if w == 0:
+                print("Unfortunately, as this was you're final warning, you also lose a guess.")
+                g -= 1    # user loses one guess
+                w += 1    # add one warning back
+        # check whether guess has already been made
+        elif guess in letters_guessed:
+            # if user has one or more warnings left, they lose one warning
+            if w > 1:
+                w -= 1
+                print("\nOops! You've already guessed that letter. You now have", w,"warnings left.")
+            # if user has no warnings left, they should lose a guess
+            else:
+                print("\nOops! You've already guessed that letter.\nUnfortunately, as this was you're final warning, you also lose a guess.")
+                g -= 1    # user loses one guess
+                w += 1    # add one warning back
         # user guess is correct
         elif guess in secret_word: # remember to convert secret word to a list
             print("\nWell done! Your guess is correct!")
-            # add guess to letters_guessed
-            letters_guessed.append(guess)
+            letters_guessed.append(guess)   # add guess to letters_guessed
         else:
             print("\nYour guess is unfortunately wrong. Try again!")
-            # add guess to letters_guessed
-            letters_guessed.append(guess)
+            letters_guessed.append(guess)   # add guess to letters_guessed
+            g -= 1   # decrement number of guesses
 
         # display secret word with only guessed letters shown
         print(get_guessed_word(secret_word, letters_guessed))
         print("\n------------------------")
 
-        g -= 1   # decrement number of guesses
+        # g -= 1   # decrement number of guesses
 
-    if g == 0:
-        # display message that guesses have run out
-        print("You are out of guesses :( \nBetter luck next time!")
-    else:
-        # display message that warnings have run out
-        print("You are out of warnings :( \nMake sure to input only alphabetical letters next time as guesses!")
+    # display message that guesses have run out
+    print("You are out of guesses :( \nBetter luck next time!")
 
     # return guess
+
 
 
 
