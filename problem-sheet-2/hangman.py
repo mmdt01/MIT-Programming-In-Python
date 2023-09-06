@@ -198,7 +198,12 @@ def hangman(secret_word):
         else:
             print("\nYour guess is unfortunately wrong. Try again!")
             letters_guessed.append(guess)   # add guess to letters_guessed
-            g -= 1   # decrement number of guesses
+            # if user guess is incorrent and vowel
+            if guess in ['a','e','i','o','u']:
+                print("(2 guesses are lost for an incorrect vowel)")
+                g -= 2
+            else:
+                g -= 1   # decrement number of guesses
 
         # display secret word with only guessed letters shown
         print(get_guessed_word(secret_word, letters_guessed))
