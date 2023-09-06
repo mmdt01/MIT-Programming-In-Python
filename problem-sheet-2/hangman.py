@@ -163,10 +163,6 @@ def hangman(secret_word):
 
         # accept capital letters as a valid input
         guess = guess.lower()
-
-        # # terminate game if all letters have been guessed
-        # if is_word_guessed(secret_word, letters_guessed):
-        #     print("Congratulations!!! You have correctly guessed the secret word! :)")
         
         # check whether guess is valid
         if guess not in list(string.ascii_lowercase):
@@ -191,6 +187,7 @@ def hangman(secret_word):
         elif guess in secret_word: # remember to convert secret word to a list
             print("\nWell done! Your guess is correct!")
             ltrs_guessed.append(guess)   # add guess to letters_guessed
+        # user guess is incorrect
         else:
             print("\nYour guess is unfortunately wrong. Try again!")
             ltrs_guessed.append(guess)   # add guess to letters_guessed
@@ -199,12 +196,11 @@ def hangman(secret_word):
                 print("(2 guesses are lost for an incorrect vowel)")
                 g -= 2
             else:
-                g -= 1   # decrement number of guesses
+                g -= 1   
 
         # display secret word with only guessed letters shown
         print(get_guessed_word(secret_word, ltrs_guessed))
         print("\n------------------------")
-
 
     if g == 0:
         # display message that guesses have run out
@@ -214,19 +210,15 @@ def hangman(secret_word):
         print("Congratulations!!! You have correctly guessed the secret word! :)\n")
 
 
-
-
-
-
 # test hangman func
-secret_word = "bokke"
+secret_word = "springboks"
 hangman(secret_word)
 
 
 
 # When you've completed your hangman function, scroll down to the bottom
 # of the file and uncomment the first two lines to test
-#(hint: you might want to pick your own
+# (hint: you might want to pick your own
 # secret_word while you're doing your own testing)
 
 
