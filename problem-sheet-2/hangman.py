@@ -186,12 +186,18 @@ def hangman(secret_word):
             # add guess to letters_guessed
             letters_guessed.append(guess)
 
-        # after guess
+        # display secret word with only guessed letters shown
         print(get_guessed_word(secret_word, letters_guessed))
-        # print(secret_word) # only show letters that have been guessed
         print("\n------------------------")
 
         g -= 1   # decrement number of guesses
+
+    if g == 0:
+        # display message that guesses have run out
+        print("You are out of guesses :( \nBetter luck next time!")
+    else:
+        # display message that warnings have run out
+        print("You are out of warnings :( \nMake sure to input only alphabetical letters next time as guesses!")
 
     # return guess
 
