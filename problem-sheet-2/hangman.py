@@ -49,9 +49,6 @@ def choose_word(wordlist):
 # Load the list of words into the variable wordlist
 # so that it can be accessed from anywhere in the program
 wordlist = load_words()
-# DELETE
-# secret_word = choose_word(wordlist)
-# print("secret word =", secret_word)
 
 def is_word_guessed(secret_word, letters_guessed):
     '''
@@ -77,10 +74,6 @@ def is_word_guessed(secret_word, letters_guessed):
             # return false if letter is not contained
             return False
 
-# secret_word = "cat"
-# letters_guessed = ['c','d','a','t']
-# print(is_word_guessed(secret_word, letters_guessed))
-
 def get_guessed_word(secret_word, letters_guessed):
     '''
     secret_word: string, the word the user is guessing
@@ -104,8 +97,6 @@ def get_guessed_word(secret_word, letters_guessed):
     # convert list back to a sting
     guessed_word = ''.join(word)
     return guessed_word
-
-
 
 def get_available_letters(letters_guessed):
     '''
@@ -159,7 +150,7 @@ def hangman(secret_word):
     print("I am thinking of a word that is", len(secret_word), "letters long.\n------------------------")
 
     # enter guess loop 
-    while g > 0:
+    while g > 0 and is_word_guessed(secret_word, ltrs_guessed) == False :
         # display number of guesses left
         print("You have", g, "guesses left.")
         # display number of warnings left
@@ -200,10 +191,6 @@ def hangman(secret_word):
         elif guess in secret_word: # remember to convert secret word to a list
             print("\nWell done! Your guess is correct!")
             ltrs_guessed.append(guess)   # add guess to letters_guessed
-            # terminate game if all letters have been guessed
-            if is_word_guessed(secret_word, ltrs_guessed):
-                print("Congratulations!!! You have correctly guessed the secret word! :)")
-                break
         else:
             print("\nYour guess is unfortunately wrong. Try again!")
             ltrs_guessed.append(guess)   # add guess to letters_guessed
@@ -218,19 +205,21 @@ def hangman(secret_word):
         print(get_guessed_word(secret_word, ltrs_guessed))
         print("\n------------------------")
 
-        # g -= 1   # decrement number of guesses
 
-    # display message that guesses have run out
-    print("You are out of guesses :( \nBetter luck next time!")
+    if g == 0:
+        # display message that guesses have run out
+        print("You are out of guesses :( \nBetter luck next time!\n")
+    else:
+        # display message that secret word has been guessed
+        print("Congratulations!!! You have correctly guessed the secret word! :)\n")
 
-    # return guess
 
 
 
 
 
 # test hangman func
-secret_word = "springboks"
+secret_word = "bokke"
 hangman(secret_word)
 
 
