@@ -114,6 +114,25 @@ def get_available_letters(letters_guessed):
     return available_letters
 
 
+# find number of unique letters in secret word
+def unique_letters(secret_word):
+    '''
+    secret_word: string, the secret word to guess.
+    returns: integer, number of unique letters in secret word
+    '''
+    # convert secret word to a list
+    word = list(secret_word)
+    # create empty list to store unique letters
+    unique = []
+    # loop through letters in secret word
+    for letter in word:
+        # check if letter is not in unique list
+        if letter not in unique:
+            # add letter to unique list
+            unique.append(letter)
+    # return number of unique letters
+    return len(unique)
+
 
 def hangman(secret_word):
     '''
@@ -207,11 +226,25 @@ def hangman(secret_word):
         print("You are out of guesses :( \nBetter luck next time!\n")
     else:
         # display message that secret word has been guessed
-        print("Congratulations!!! You have correctly guessed the secret word! :)\n")
+        print("Congratulations!!! You won! :) \nYour total score for this game is:", g*(unique_letters(secret_word)), "\n")
 
+# find number of unique letters in secret word
+def unique_letters(secret_word):
+    # convert secret word to a list
+    word = list(secret_word)
+    # create empty list to store unique letters
+    unique = []
+    # loop through letters in secret word
+    for letter in word:
+        # check if letter is not in unique list
+        if letter not in unique:
+            # add letter to unique list
+            unique.append(letter)
+    # return number of unique letters
+    return len(unique)
 
 # test hangman func
-secret_word = "springboks"
+secret_word = "boks"
 hangman(secret_word)
 
 
