@@ -243,9 +243,9 @@ def unique_letters(secret_word):
     # return number of unique letters
     return len(unique)
 
-# test hangman func
-secret_word = "boks"
-hangman(secret_word)
+# # test hangman func
+# secret_word = "boks"
+# hangman(secret_word)
 
 
 
@@ -332,8 +332,8 @@ if __name__ == "__main__":
     # To test part 2, comment out the pass line above and
     # uncomment the following two lines.
     
-    # secret_word = choose_word(wordlist)
-    # hangman(secret_word)
+    secret_word = choose_word(wordlist)
+    hangman(secret_word)
 
 ###############
     
