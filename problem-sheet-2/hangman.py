@@ -1,7 +1,5 @@
 # Problem Set 2, hangman.py
 # Name: Matthys
-# Collaborators:
-# Time spent:
 
 # Hangman Game
 # -----------------------------------
@@ -243,11 +241,6 @@ def unique_letters(secret_word):
     # return number of unique letters
     return len(unique)
 
-# # test hangman func
-# secret_word = "boks"
-# hangman(secret_word)
-
-
 
 # When you've completed your hangman function, scroll down to the bottom
 # of the file and uncomment the first two lines to test
@@ -327,7 +320,7 @@ def hangman_with_hints(secret_word):
 
 
 if __name__ == "__main__":
-    pass
+    # pass
 
     # To test part 2, comment out the pass line above and
     # uncomment the following two lines.
